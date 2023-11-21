@@ -25,4 +25,48 @@ console.log(`The result of this arithmetic chain is: ${result}.`);
 const isOver25 = result > 25;
 console.log(`The result is over 25: ${isOver25}.`);
 
+// Part 2: Practical Math
+
+// Context:
+const totalDistance = 1500;
+const budget = 175;
+const fuelPricePerGallon = 3;
+const speeds = [55, 60, 75];
+const efficiencies = [30, 28, 23];
+
+// Build functions:
+const calcFuelGallon = function(efficiency) {
+    return totalDistance/efficiency;
+}
+
+const calcFuelExpense = function(speed, efficiency) {
+    return calcFuelGallon(speed, efficiency) * fuelPricePerGallon;
+}
+
+const calcTripDuration = function(speed) {
+    return totalDistance/speed;
+}
+
+// Compare results:
+for (let i = 0; i < speeds.length; i++) {
+    const speed = speeds[i];
+    const efficiency = efficiencies[i];
+
+    const fuelGallon = calcFuelGallon(efficiency);
+    const fuelExpense = calcFuelExpense(speed, efficiency);
+    const tripDuration = calcTripDuration(speed);
+
+    const isBudgetEnough = fuelExpense <= budget;
+
+    console.log(`When travel at a speed of ${speed} mph:`);
+    console.log(`- Gallons of fuel needed: ${fuelGallon.toFixed(2)} gallons.`);
+    console.log(`- Trip duration: ${tripDuration.toFixed(2)} hours.`);
+    console.log(`- Fuel expense: $${fuelExpense.toFixed(2)}.`);
+
+    if (isBudgetEnough) {
+        console.log('Conclusion: The budget is enough for this speed.');
+    } else {
+        console.log('Conclusion: The budget is not enough for this speed.')
+    }
+}
 
